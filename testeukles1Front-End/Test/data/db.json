@@ -1,0 +1,22 @@
+{
+    "materiels": [
+     {"materiel_name":"Marteau", "id":1, "prix":"33"},
+     {"materiel_name":"Marteau", "id":1, "prix":"33"},
+     {"materiel_name":"Marteau", "id":1, "prix":"33"}
+
+    ],
+
+    "clients": [
+        {"client_name":"", "id":1, "created_at":""}
+       
+
+    ],
+
+    "lien": [
+        {"client_name":"", "id":1, "created_at":""}
+       
+
+    ]
+
+
+}

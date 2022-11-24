@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Support\Facades\Validator;
@@ -7,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Client;
 use Illuminate\Support\Facades\DB;
 class ClientController extends Controller
+
 
 {
     //
@@ -46,26 +46,16 @@ class ClientController extends Controller
 
    public function getResult(Request $request)
    {
-    // $client = DB::table('clients')
-    // ->join('materiels', 'clients.refachat', '=', 'materiels.refachat')
-   
-    // ->select(DB::RAW('clients.name', 'clients.quantite','SUM(materiels.prix) as total'))
-    // ->groupByRaw('clients.name')
-    // ->havingRaw('SUM(materiels.prix) > 10')
-    // ->get();
-
-    //route get result pour afficher resulta
-   //$client = DB::table('clients')->get();
-    
-
-    //->select()
     
     $client = DB::table('lien')->join('clients', 'clients.id', '=', 'lien.client_id')->join('materiels','materiels.id','=','lien.materiel_id')
-    ->where('lien.quantite', '>', '30', 'AND', '(lien.quantite * materiels.prix)', '>', '30000')->get() ;
+    ->where('lien.quantite', '>', '30', 'AND', '(lien.quantite * materiels.prix)', '>', '30000')
+    ->groupBy('clients.id')
+    ->orderBy('lien.materiel_id', 'DESC')
+    ->get() ;
+    
      
-    //  SELECT * from lien INNER JOIN clients ON clients.id = lien.client_id INNER JOIN materiels ON materiels.id = lien.materiel_id WHERE lien.quantite > 30 AND (lien.quantite * materiels.prix) > 30000
-    //  ->get();
-
+   
+  
     return $client;
 
     
